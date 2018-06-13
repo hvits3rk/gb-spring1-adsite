@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Company</title>
+</head>
+<body>
+
+<section class="container">
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>DESCRIPTION</th>
+            <th>ADDRESS</th>
+        </tr>
+        <tr>
+            <td th:text="${company.id}">company id</td>
+            <td th:text="${company.name}">company name</td>
+            <td th:text="${company.description}">company description</td>
+            <td th:text="${company.address}">company address</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>CONTENT</th>
+            <th>PHONE NUMBER</th>
+            <th>COMPANY</th>
+            <th>CATEGORY</th>
+        </tr>
+        <tr th:each="ad : ${adList}">
+            <td th:text="${ad.id}">ad id</td>
+            <td th:text="${ad.name}">ad name</td>
+            <td th:text="${ad.content}">ad content</td>
+            <td th:text="${ad.phoneNumber}">ad phone number</td>
+            <td><a th:href="@{/company/{id}(id=${ad.company.id})}" th:text="${ad.company.name}">company name</a></td>
+            <td><a th:href="@{/category/{id}(id=${ad.category.id})}" th:text="${ad.category.name}">category name</a>
+            </td>
+        </tr>
+    </table>
+
+</section>
+
+</body>
+</html>

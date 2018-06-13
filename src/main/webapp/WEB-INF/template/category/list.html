@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category List</title>
+</head>
+<body>
+
+<section class="container">
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+        </tr>
+        <tr th:each="category : ${categoryList}">
+            <td th:text="${category.id}">category id</td>
+            <td th:text="${category.name}">category name</td>
+        </tr>
+    </table>
+
+    <a th:href="@{/category/add}">Create new</a>
+
+</section>
+
+</body>
+</html>

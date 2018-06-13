@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ad List</title>
+</head>
+<body>
+
+<section class="container">
+
+    <div class="row justify-content-end mb-3">
+        <a th:href="@{add}" class="btn btn-primary">Create new</a>
+    </div>
+
+    <div class="row d-flex justify-content-between flex-wrap">
+
+        <div th:each="ad : ${adList}" class="card" style="width: 24rem; margin: 8px;">
+            <div class="card-body">
+                <h5 th:text="${ad.name}" class="card-title">Card title</h5>
+                <p th:text="${ad.id}" class="card-subtitle mb-2 font-weight-light text-muted">id</p>
+                <p th:text="${ad.content}" class="card-text">Some quick example text to build on the card title and make
+                    up the bulk of the card's content.</p>
+                <p th:text="${ad.phoneNumber}" class="text-muted">phone number</p>
+                <a th:href="@{/company/{id}(id=${ad.company.id})}"
+                   th:text="'#' + ${ad.company.name}" href="#" class="card-link">Card link</a>
+                <a th:href="@{/category/{id}(id=${ad.category.id})}"
+                   th:text="'#' + ${ad.category.name}" href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

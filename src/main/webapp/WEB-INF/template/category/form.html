@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category Form</title>
+</head>
+<body>
+
+<section class="container">
+
+    <form action="#" th:action="@{/category/save}" th:object="${category}" method="post">
+        <p>Name: <input type="text" th:field="*{name}"/></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+
+</section>
+
+</body>
+</html>
