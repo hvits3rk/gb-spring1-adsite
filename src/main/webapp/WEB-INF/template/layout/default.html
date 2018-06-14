@@ -25,13 +25,13 @@
                     <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li th:classappend="${activeController == 'ad' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/ad/list}">Ad List</a>
+                    <a class="nav-link" href="#" th:href="@{/ad/list}">Ad</a>
                 </li>
                 <li th:classappend="${activeController == 'company' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/company/list}">Company List</a>
+                    <a class="nav-link" href="#" th:href="@{/company/list}">Company</a>
                 </li>
                 <li th:classappend="${activeController == 'category' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/category/list}">Category List</a>
+                    <a class="nav-link" href="#" th:href="@{/category/list}">Category</a>
                 </li>
             </ul>
         </div>

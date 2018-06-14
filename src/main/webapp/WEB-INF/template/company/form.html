@@ -7,12 +7,54 @@
 
 <section class="container">
 
-    <form action="#" th:action="@{/company/save}" th:object="${company}" method="post">
-        <p>Name: <input type="text" th:field="*{name}"/></p>
-        <p>Description: <input type="text" th:field="*{description}"/></p>
-        <p>Address: <input type="text" th:field="*{address}"/></p>
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-    </form>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">Create new Company</div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/company/save}" th:object="${company}" method="post">
+
+                        <div class="form-group row">
+                            <label for="companyId" class="col-3 col-form-label">Id</label>
+                            <div class="col">
+                                <input th:field="*{id}" type="text" class="form-control" id="companyId"
+                                       placeholder="ID" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="companyName" class="col-3 col-form-label">Name</label>
+                            <div class="col">
+                                <input th:field="*{name}" type="text" class="form-control" id="companyName"
+                                       placeholder="Name"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="companyDescription" class="col-3 col-form-label">Description</label>
+                            <div class="col">
+                                <input th:field="*{description}" type="text" class="form-control" id="companyDescription"
+                                       placeholder="Description"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="companyAddress" class="col-3 col-form-label">Address</label>
+                            <div class="col">
+                                <input th:field="*{address}" type="text" class="form-control" id="companyAddress"
+                                       placeholder="Address"
+                                       required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 

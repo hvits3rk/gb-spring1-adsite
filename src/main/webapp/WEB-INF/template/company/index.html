@@ -7,39 +7,49 @@
 
 <section class="container">
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>DESCRIPTION</th>
-            <th>ADDRESS</th>
-        </tr>
-        <tr>
-            <td th:text="${company.id}">company id</td>
-            <td th:text="${company.name}">company name</td>
-            <td th:text="${company.description}">company description</td>
-            <td th:text="${company.address}">company address</td>
-        </tr>
+    <table class="table table-striped mb-5 mt-5">
+        <caption>Company info</caption>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">ADDRESS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${company.id}" scope="row">company id</td>
+                <td th:text="${company.name}">company name</td>
+                <td th:text="${company.description}">company description</td>
+                <td th:text="${company.address}">company address</td>
+            </tr>
+        </tbody>
     </table>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>CONTENT</th>
-            <th>PHONE NUMBER</th>
-            <th>COMPANY</th>
-            <th>CATEGORY</th>
-        </tr>
-        <tr th:each="ad : ${adList}">
-            <td th:text="${ad.id}">ad id</td>
-            <td th:text="${ad.name}">ad name</td>
-            <td th:text="${ad.content}">ad content</td>
-            <td th:text="${ad.phoneNumber}">ad phone number</td>
-            <td><a th:href="@{/company/{id}(id=${ad.company.id})}" th:text="${ad.company.name}">company name</a></td>
-            <td><a th:href="@{/category/{id}(id=${ad.category.id})}" th:text="${ad.category.name}">category name</a>
-            </td>
-        </tr>
+    <table class="table table-striped">
+        <caption>List of ads within company</caption>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">CONTENT</th>
+                <th scope="col">PHONE NUMBER</th>
+                <th scope="col">COMPANY</th>
+                <th scope="col">CATEGORY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ad : ${adList}">
+                <td th:text="${ad.id}" scope="row">ad id</td>
+                <td th:text="${ad.name}">ad name</td>
+                <td th:text="${ad.content}">ad content</td>
+                <td th:text="${ad.phoneNumber}">ad phone number</td>
+                <td><a th:href="@{/company/{id}(id=${ad.company.id})}" th:text="${ad.company.name}">company name</a></td>
+                <td><a th:href="@{/category/{id}(id=${ad.category.id})}" th:text="${ad.category.name}">category name</a>
+                </td>
+            </tr>
+        </tbody>
     </table>
 
 </section>
