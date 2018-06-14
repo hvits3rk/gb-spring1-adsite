@@ -47,7 +47,7 @@ public class CategoryController {
     @PostMapping("/save")
     public String addCategory(@ModelAttribute Category category) {
         categoryService.add(category);
-        return "redirect:/category";
+        return "redirect:list";
     }
 
 }

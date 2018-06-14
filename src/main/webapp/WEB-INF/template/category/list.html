@@ -7,18 +7,26 @@
 
 <section class="container">
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-        </tr>
-        <tr th:each="category : ${categoryList}">
-            <td th:text="${category.id}">category id</td>
-            <td th:text="${category.name}">category name</td>
-        </tr>
-    </table>
+    <div class="row justify-content-end mb-3">
+        <a th:href="@{add}" class="btn btn-primary">Create new</a>
+    </div>
 
-    <a th:href="@{/category/add}">Create new</a>
+
+    <table class="table table-striped mb-5">
+        <caption>Category list</caption>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="category : ${categoryList}">
+                <td th:text="${category.id}" scope="row">category id</td>
+                <td th:text="${category.name}">category name</td>
+            </tr>
+        </tbody>
+    </table>
 
 </section>
 
