@@ -15,8 +15,11 @@
 
         <div th:each="ad : ${adList}" class="card" style="width: 24rem; margin: 8px;">
             <div class="card-body">
-                <h5 th:text="${ad.name}" class="card-title">Card title</h5>
-                <p th:text="${ad.id}" class="card-subtitle mb-2 font-weight-light text-muted">id</p>
+                <div class="clearfix">
+                    <h5 th:text="${ad.name}" class="card-title mb-0 float-left">Card title</h5>
+                    <a th:href="@{edit/{id}(id=${ad.id})}" href="#" class="float-right">Edit</a>
+                </div>
+                <p th:text="${ad.id}" class="mb-2 font-weight-light text-muted">id</p>
                 <p th:text="${ad.content}" class="card-text">Some quick example text to build on the card title and make
                     up the bulk of the card's content.</p>
                 <p th:text="${ad.phoneNumber}" class="text-muted">phone number</p>

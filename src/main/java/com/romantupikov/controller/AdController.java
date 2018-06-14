@@ -48,6 +48,14 @@ public class AdController {
         return "ad/form";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editAd(@PathVariable("id") String id, Model model) {
+        model.addAttribute("ad", adService.findById(id));
+        model.addAttribute("companyList", companyService.findAll());
+        model.addAttribute("categoryList", categoryService.findAll());
+        return "ad/form";
+    }
+
     @PostMapping("/save")
     public String saveAd(@ModelAttribute Ad ad,
                          @RequestParam("companyId") String companyId,
