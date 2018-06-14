@@ -57,6 +57,7 @@
                                 <select name="companyId" id="adCompany" class="form-control">
                                     <option th:each="company : ${companyList}"
                                             th:value="${company.id}"
+                                            th:selected="${ad.company?.id} == ${company.id}"
                                             th:text="${company.name}">Company
                                     </option>
                                 </select>
@@ -71,6 +72,7 @@
                                 <select name="categoryId" id="adCategory" class="form-control">
                                     <option th:each="category : ${categoryList}"
                                             th:value="${category.id}"
+                                            th:selected="${ad.category?.id} == ${category.id}"
                                             th:text="${category.name}">Category
                                     </option>
                                 </select>
