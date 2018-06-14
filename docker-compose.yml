@@ -3,7 +3,12 @@ version: '3.6'
 services:
 
   db:
-    image: postgres
+    build:
+      context: .
+      dockerfile: Dockerfile-psql
+      cache_from:
+        - postgres:latest
+    image: hvits3rk/postgres-ru-locale:latest
     volumes:
       - pslq-data:/var/lib/postgresql/data
     environment:
@@ -17,6 +22,7 @@ services:
   web:
     build:
       context: .
+      dockerfile: Dockerfile
       cache_from:
         - tomcat:latest
     image: hvits3rk/tomcat-no-root:latest
