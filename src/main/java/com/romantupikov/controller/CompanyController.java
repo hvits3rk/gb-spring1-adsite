@@ -19,6 +19,11 @@ public class CompanyController {
         this.adService = adService;
     }
 
+    @ModelAttribute("activeController")
+    public String activeController() {
+        return "company";
+    }
+
     @GetMapping("/list")
     public String companyList(Model model) {
         model.addAttribute("companyList", companyService.findAll());
@@ -28,7 +33,7 @@ public class CompanyController {
     @GetMapping("/{id}")
     public String companyDetail(@PathVariable("id") String id, Model model) {
         model.addAttribute("company", companyService.findById(id))
-            .addAttribute("adList", adService.findByCompanyId(id));
+                .addAttribute("adList", adService.findByCompanyId(id));
         return "company/index";
     }
 

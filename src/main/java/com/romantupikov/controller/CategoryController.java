@@ -19,6 +19,12 @@ public class CategoryController {
         this.adService = adService;
     }
 
+    @ModelAttribute("activeController")
+    public String activeController() {
+        return "category";
+    }
+
+
     @GetMapping("/list")
     public String categoryList(Model model) {
         model.addAttribute("categoryList", categoryService.findAll());
@@ -28,7 +34,7 @@ public class CategoryController {
     @GetMapping("/{id}")
     public String categoryDetail(@PathVariable("id") String id, Model model) {
         model.addAttribute("category", categoryService.findById(id))
-            .addAttribute("adList", adService.findByCategoryId(id));
+                .addAttribute("adList", adService.findByCategoryId(id));
         return "category/index";
     }
 

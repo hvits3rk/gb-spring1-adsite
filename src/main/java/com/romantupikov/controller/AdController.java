@@ -28,6 +28,11 @@ public class AdController {
         this.categoryService = categoryService;
     }
 
+    @ModelAttribute("activeController")
+    public String activeController() {
+        return "ad";
+    }
+
     @GetMapping("/list")
     public String adList(Model model) {
         model.addAttribute("adList", adService.findAll());
