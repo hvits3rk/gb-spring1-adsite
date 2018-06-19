@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -33,10 +35,22 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
                 .setCachePeriod(31556926);
     }
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(dateFormatter());
+    }
+
+    @Bean
+    public DateFormatter dateFormatter() {
+        return new DateFormatter();
+    }
+
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
+        messageSource.setBasename("classpath:locale/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setUseCodeAsDefaultMessage(true);
         return messageSource;
     }
 

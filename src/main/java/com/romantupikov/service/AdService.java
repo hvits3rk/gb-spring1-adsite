@@ -34,7 +34,7 @@ public class AdService {
     }
 
     public Ad add(Ad ad) {
-        ad.setPublishedData(new Date());
+        ad.setPublishedDate(new Date());
         repository.save(ad);
         return ad;
     }
@@ -43,7 +43,7 @@ public class AdService {
         Optional<Ad> optionalCategory = repository.findById(ad.getId());
 
         if (optionalCategory.isPresent()) {
-            ad.setPublishedData(new Date());
+            ad.setPublishedDate(new Date());
             repository.save(ad);
             return ad;
         }

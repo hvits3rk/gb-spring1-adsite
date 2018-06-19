@@ -16,8 +16,8 @@ public class Ad extends AbstractEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "published_data")
-    private Date publishedData;
+    @Column(name = "published_date")
+    private Date publishedDate;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
@@ -59,12 +59,12 @@ public class Ad extends AbstractEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getPublishedData() {
-        return publishedData;
+    public Date getPublishedDate() {
+        return publishedDate;
     }
 
-    public void setPublishedData(Date publishedData) {
-        this.publishedData = publishedData;
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     public Category getCategory() {
@@ -83,7 +83,7 @@ public class Ad extends AbstractEntity {
         return Objects.equals(name, ad.name) &&
                 Objects.equals(content, ad.content) &&
                 Objects.equals(phoneNumber, ad.phoneNumber) &&
-                Objects.equals(publishedData, ad.publishedData) &&
+                Objects.equals(publishedDate, ad.publishedDate) &&
                 Objects.equals(company, ad.company) &&
                 Objects.equals(category, ad.category);
     }
@@ -91,7 +91,7 @@ public class Ad extends AbstractEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, content, phoneNumber, publishedData, company, category);
+        return Objects.hash(name, content, phoneNumber, publishedDate, company, category);
     }
 
     @Override
