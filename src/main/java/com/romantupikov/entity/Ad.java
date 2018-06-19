@@ -1,5 +1,7 @@
 package com.romantupikov.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -17,6 +19,8 @@ public class Ad extends AbstractEntity {
     private String phoneNumber;
 
     @Column(name = "published_date")
+    @JsonFormat
+    (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date publishedDate;
 
     @ManyToOne

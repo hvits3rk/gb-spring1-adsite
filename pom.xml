@@ -15,6 +15,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <spring.version>5.0.7.RELEASE</spring.version>
         <spring-data.version>Kay-RELEASE</spring-data.version>
+        <jackson.version>2.9.6</jackson.version>
         <postgres.version>42.2.2</postgres.version>
         <hibernate-entitymanager.version>5.3.1.Final</hibernate-entitymanager.version>
         <servlet.version>4.0.1</servlet.version>
@@ -71,6 +72,12 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>

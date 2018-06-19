@@ -2,6 +2,8 @@ package com.romantupikov.service;
 
 import com.romantupikov.entity.Ad;
 import com.romantupikov.repository.AdRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -31,6 +33,10 @@ public class AdService {
 
     public List<Ad> findAll() {
         return repository.findAll();
+    }
+
+    public Page<Ad> findPaginated(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     public Ad add(Ad ad) {
