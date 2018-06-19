@@ -28,15 +28,26 @@ public class CategoryService {
         return repository.findAll();
     }
 
-    public void add(Category category) {
+    public Category add(Category category) {
+        Optional<Category> optionalCategory = repository.findByName(category.getName());
+
+        if (optionalCategory.isPresent() && optionalCategory.get().equals(category)) {
+            return optionalCategory.get();
+        }
+
         repository.save(category);
+        return category;
     }
 
-    public void update(Category category) {
+    public Category update(Category category) {
         Optional<Category> optionalCategory = repository.findById(category.getId());
+
         if (optionalCategory.isPresent()) {
             repository.save(category);
+            return category;
         }
+
+        return null;
     }
 
     public void delete(Category category) {

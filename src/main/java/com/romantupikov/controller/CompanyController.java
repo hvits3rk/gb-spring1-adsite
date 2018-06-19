@@ -3,8 +3,6 @@ package com.romantupikov.controller;
 import com.romantupikov.entity.Company;
 import com.romantupikov.service.AdService;
 import com.romantupikov.service.CompanyService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
-
-    private static final Logger log = LoggerFactory.getLogger(CompanyController.class);
 
     private final CompanyService companyService;
     private final AdService adService;
@@ -49,7 +45,6 @@ public class CompanyController {
 
     @PostMapping("/save")
     public String addCompany(@ModelAttribute Company company) {
-        log.info("{}", company);
         companyService.add(company);
         return "redirect:list";
     }

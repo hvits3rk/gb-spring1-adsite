@@ -4,6 +4,7 @@ import com.romantupikov.entity.Ad;
 import com.romantupikov.repository.AdRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,15 +33,22 @@ public class AdService {
         return repository.findAll();
     }
 
-    public void add(Ad ad) {
+    public Ad add(Ad ad) {
+        ad.setPublishedData(new Date());
         repository.save(ad);
+        return ad;
     }
 
-    public void update(Ad ad) {
+    public Ad update(Ad ad) {
         Optional<Ad> optionalCategory = repository.findById(ad.getId());
+
         if (optionalCategory.isPresent()) {
+            ad.setPublishedData(new Date());
             repository.save(ad);
+            return ad;
         }
+
+        return null;
     }
 
     public void delete(Ad ad) {

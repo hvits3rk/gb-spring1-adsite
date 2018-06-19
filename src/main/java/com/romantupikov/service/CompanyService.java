@@ -33,15 +33,26 @@ public class CompanyService {
         return findById(ad.getCompany().getId());
     }
 
-    public void add(Company company) {
+    public Company add(Company company) {
+        Optional<Company> optionalCompany = repository.findByName(company.getName());
+
+        if (optionalCompany.isPresent() && optionalCompany.get().equals(company)) {
+            return optionalCompany.get();
+        }
+
         repository.save(company);
+        return company;
     }
 
-    public void update(Company company) {
-        Optional<Company> optionalCategory = repository.findById(company.getId());
-        if (optionalCategory.isPresent()) {
+    public Company update(Company company) {
+        Optional<Company> optionalCompany = repository.findById(company.getId());
+
+        if (optionalCompany.isPresent()) {
             repository.save(company);
+            return company;
         }
+
+        return null;
     }
 
     public void delete(Company company) {
