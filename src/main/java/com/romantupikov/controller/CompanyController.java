@@ -30,7 +30,7 @@ public class CompanyController {
         return "company/list";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/detail/{id}")
     public String companyDetail(@PathVariable("id") String id, Model model) {
         model.addAttribute("company", companyService.findById(id))
                 .addAttribute("adList", adService.findByCompanyId(id));

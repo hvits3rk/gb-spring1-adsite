@@ -7,11 +7,10 @@ import com.romantupikov.entity.Company;
 import com.romantupikov.service.AdService;
 import com.romantupikov.service.CategoryService;
 import com.romantupikov.service.CompanyService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/ad")
 public class AdController {
-
-    private static final Logger log = LoggerFactory.getLogger(AdController.class);
 
     private final AdService adService;
     private final CompanyService companyService;
@@ -58,12 +55,11 @@ public class AdController {
     }
 
     @GetMapping("/list")
-    public String adList(Model model) {
-//        model.addAttribute("adList", adService.findAll());
+    public String adList() {
         return "ad/list";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/detail/{id}")
     public String adDetail(@PathVariable("id") String id, Model model) {
         model.addAttribute("ad", adService.findById(id));
         return "ad/index";
@@ -95,6 +91,6 @@ public class AdController {
         ad.setCategory(category);
         ad.setCompany(company);
         adService.add(ad);
-        return "redirect:list";
+        return "redirect:/";
     }
 }

@@ -31,7 +31,7 @@ public class CategoryController {
         return "category/list";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/detail/{id}")
     public String categoryDetail(@PathVariable("id") String id, Model model) {
         model.addAttribute("category", categoryService.findById(id))
                 .addAttribute("adList", adService.findByCategoryId(id));

@@ -14,7 +14,7 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#" th:href="@{/}">Ad Site</a>
+        <a th:href="@{/}" href="#" class="navbar-brand">Ad Site</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,16 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li th:classappend="${activeController == 'home' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    <a th:href="@{/}" href="#" class="nav-link">Home</a>
                 </li>
                 <li th:classappend="${activeController == 'ad' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/ad/list}">Ad</a>
+                    <a th:href="@{/ad/list}" href="#" class="nav-link">Ad</a>
                 </li>
                 <li th:classappend="${activeController == 'company' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/company/list}">Company</a>
+                    <a th:href="@{/company/list}" href="#" class="nav-link">Company</a>
                 </li>
                 <li th:classappend="${activeController == 'category' ? 'active' : ''}" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/category/list}">Category</a>
+                    <a th:href="@{/category/list}" href="#" class="nav-link">Category</a>
                 </li>
             </ul>
         </div>

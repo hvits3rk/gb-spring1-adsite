@@ -36,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
                 .setCachePeriod(31556926);
         registry.addResourceHandler("/js/**")
                 .addResourceLocations("/resources/js/")
-                .setCachePeriod(0);
+                .setCachePeriod(31556926);
     }
 
     @Override

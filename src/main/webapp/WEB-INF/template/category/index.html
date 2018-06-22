@@ -23,6 +23,7 @@
         </tbody>
     </table>
 
+    <!-- TODO: create template -->
     <table class="table table-striped">
         <caption>List of ads within category</caption>
         <thead class="thead-dark">
@@ -41,9 +42,10 @@
                 <td th:text="${ad.name}">ad name</td>
                 <td th:text="${ad.content}">ad content</td>
                 <td th:text="${ad.phoneNumber}">ad phone number</td>
-                <td><a th:href="@{/company/{id}(id=${ad.company.id})}" th:text="${ad.company.name}">company name</a></td>
-                <td><a th:href="@{/category/{id}(id=${ad.category.id})}" th:text="${ad.category.name}">category name</a>
-                </td>
+                <td><a th:href="@{/company/detail/{id}(id=${ad.company.id})}"
+                       th:text="${ad.company.name}" href="#">company name</a></td>
+                <td><a th:href="@{/category/detail/{id}(id=${ad.category.id})}"
+                       th:text="${ad.category.name}" href="#">category name</a></td>
             </tr>
         </tbody>
     </table>

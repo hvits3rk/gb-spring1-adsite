@@ -12,22 +12,21 @@
             <div class="card">
                 <div class="card-header">Create new Category</div>
                 <div class="card-body">
-                    <form action="#" th:action="@{/category/save}" th:object="${category}" method="post">
+                    <form th:action="@{/category/save}" th:object="${category}" action="#" method="post">
 
                         <div class="form-group row">
                             <label for="categoryId" class="col-3 col-form-label">Id</label>
                             <div class="col">
-                                <input th:field="*{id}" type="text" class="form-control" id="categoryId"
-                                       placeholder="ID" readonly>
+                                <input th:field="*{id}" type="text" class="form-control"
+                                       id="categoryId" placeholder="ID" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="categoryName" class="col-3 col-form-label">Name</label>
                             <div class="col">
-                                <input th:field="*{name}" type="text" class="form-control" id="categoryName"
-                                       placeholder="Name"
-                                       required>
+                                <input th:field="*{name}" type="text" class="form-control"
+                                       id="categoryName" placeholder="Name" required>
                             </div>
                         </div>
 

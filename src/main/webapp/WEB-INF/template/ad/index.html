@@ -10,25 +10,26 @@
     <table class="table table-striped">
         <caption>Ad info</caption>
         <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">NAME</th>
-                <th scope="col">CONTENT</th>
-                <th scope="col">PHONE NUMBER</th>
-                <th scope="col">COMPANY</th>
-                <th scope="col">CATEGORY</th>
-            </tr>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">CONTENT</th>
+            <th scope="col">PHONE NUMBER</th>
+            <th scope="col">COMPANY</th>
+            <th scope="col">CATEGORY</th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <td th:text="${ad.id}" scope="row">ad id</td>
-                <td th:text="${ad.name}">ad name</td>
-                <td th:text="${ad.content}">ad content</td>
-                <td th:text="${ad.phoneNumber}">ad phone number</td>
-                <td><a th:href="@{/company/{id}(id=${ad.company.id})}" th:text="${ad.company.name}">company name</a></td>
-                <td><a th:href="@{/category/{id}(id=${ad.category.id})}" th:text="${ad.category.name}">category name</a>
-                </td>
-            </tr>
+        <tr>
+            <td th:text="${ad.id}" scope="row">ad id</td>
+            <td th:text="${ad.name}">ad name</td>
+            <td th:text="${ad.content}">ad content</td>
+            <td th:text="${ad.phoneNumber}">ad phone number</td>
+            <td><a th:href="@{/company/detail/{id}(id=${ad.company.id})}"
+                   th:text="${ad.company.name}" href="#">company name</a></td>
+            <td><a th:href="@{/category/detail/{id}(id=${ad.category.id})}"
+                   th:text="${ad.category.name}" href="#">category name</a></td>
+        </tr>
         </tbody>
     </table>
 
