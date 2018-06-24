@@ -8,16 +8,16 @@
 <section class="container">
 
     <div class="row justify-content-end mb-3 mt-5">
-        <a th:href="@{add}" href="#" class="btn btn-primary">Create new</a>
+        <a th:text="#{link.create}" th:href="@{add}" href="#" class="btn btn-primary">Create new</a>
     </div>
 
     <div class="row">
         <table class="table table-striped mb-5">
-            <caption>Category list</caption>
+            <caption th:text="#{category.list.caption}">Category list</caption>
             <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">NAME</th>
+                <th th:text="${#strings.toUpperCase('__#{category.field.name}__')}" scope="col">NAME</th>
             </tr>
             </thead>
             <tbody>

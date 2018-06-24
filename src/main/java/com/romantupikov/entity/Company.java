@@ -1,13 +1,21 @@
 package com.romantupikov.entity;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Company extends AbstractEntity {
 
+    @Size(max = 255, min = 3, message = "{error.size}")
+    @NotEmpty(message="{error.empty}")
     private String name;
+
+    @NotEmpty(message="{error.empty}")
     private String description;
+
+    @NotEmpty(message="{error.empty}")
     private String address;
 
     public String getName() {

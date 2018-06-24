@@ -10,9 +10,9 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-6">
             <div class="card">
-                <div class="card-header">Create new Company</div>
+                <div th:text="#{company.form.title}" class="card-header">Create new Company</div>
                 <div class="card-body">
-                    <form th:action="@{/company/save}" th:object="${company}" action="#" method="post">
+                    <form th:action="@{/company/add}" th:object="${company}" action="#" method="post">
 
                         <div class="form-group row">
                             <label for="companyId" class="col-3 col-form-label">Id</label>
@@ -23,30 +23,57 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="companyName" class="col-3 col-form-label">Name</label>
+                            <label th:text="#{company.field.name}"
+                                   for="companyName" class="col-3 col-form-label">Name</label>
                             <div class="col">
-                                <input th:field="*{name}" type="text" class="form-control"
-                                       id="companyName" placeholder="Name" required>
+                                <input th:field="*{name}"
+                                       th:errorclass="is-invalid"
+                                       th:placeholder="#{company.field.name}"
+                                       type="text" class="form-control"
+                                       id="companyName" placeholder="Name">
+                                <div th:each="err : ${#fields.errors('name')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">
+                                    Error message
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="companyDescription" class="col-3 col-form-label">Description</label>
+                            <label th:text="#{company.field.description}"
+                                   for="companyDescription" class="col-3 col-form-label">Description</label>
                             <div class="col">
-                                <input th:field="*{description}" type="text" class="form-control"
-                                       id="companyDescription" placeholder="Description" required>
+                                <input th:field="*{description}"
+                                       th:errorclass="is-invalid"
+                                       th:placeholder="#{company.field.description}"
+                                       type="text" class="form-control"
+                                       id="companyDescription" placeholder="Description">
+                                <div th:each="err : ${#fields.errors('description')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">
+                                    Error message
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="companyAddress" class="col-3 col-form-label">Address</label>
+                            <label th:text="#{company.field.address}"
+                                   for="companyAddress" class="col-3 col-form-label">Address</label>
                             <div class="col">
-                                <input th:field="*{address}" type="text" class="form-control"
-                                       id="companyAddress" placeholder="Address" required>
+                                <input th:field="*{address}"
+                                       th:errorclass="is-invalid"
+                                       th:placeholder="#{company.field.address}"
+                                       type="text" class="form-control"
+                                       id="companyAddress" placeholder="Address">
+                                <div th:each="err : ${#fields.errors('address')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">
+                                    Error message
+                                </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button th:text="#{button.submit}" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>

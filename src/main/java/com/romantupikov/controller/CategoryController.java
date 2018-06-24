@@ -5,7 +5,10 @@ import com.romantupikov.service.AdService;
 import com.romantupikov.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/category")
@@ -24,7 +27,6 @@ public class CategoryController {
         return "category";
     }
 
-
     @GetMapping("/list")
     public String categoryList(Model model) {
         model.addAttribute("categoryList", categoryService.findAll());
@@ -39,13 +41,17 @@ public class CategoryController {
     }
 
     @GetMapping("/add")
-    public String categoryForm(Model model) {
-        model.addAttribute("category", new Category());
+    public String categoryForm(final Category category) {
         return "category/form";
     }
 
-    @PostMapping("/save")
-    public String addCategory(@ModelAttribute Category category) {
+    @PostMapping("/add")
+    public String addCategory(@Valid final Category category, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "category/form";
+        }
+
         categoryService.add(category);
         return "redirect:list";
     }

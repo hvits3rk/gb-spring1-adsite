@@ -18,7 +18,9 @@
         <jackson.version>2.9.6</jackson.version>
         <postgres.version>42.2.2</postgres.version>
         <hibernate-entitymanager.version>5.3.1.Final</hibernate-entitymanager.version>
-        <servlet.version>4.0.1</servlet.version>
+        <hibernate-validator.version>6.0.10.Final</hibernate-validator.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <javax.validation-api.version>2.0.1.Final</javax.validation-api.version>
         <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <logback.version>1.2.3</logback.version>
         <jaxb.version>2.2.11</jaxb.version>
@@ -87,6 +89,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgres.version}</version>
@@ -95,8 +103,14 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet.version}</version>
+            <version>${javax.servlet-api.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax.validation-api.version}</version>
         </dependency>
 
         <dependency>

@@ -9,7 +9,10 @@ import com.romantupikov.service.CategoryService;
 import com.romantupikov.service.CompanyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/ad")
@@ -56,11 +59,27 @@ public class AdController {
     }
 
     @GetMapping("/add")
-    public String addAd(Model model) {
-        model.addAttribute("ad", new Ad());
+    public String addAd(final Ad ad, Model model) {
         model.addAttribute("companyList", companyService.findAll());
         model.addAttribute("categoryList", categoryService.findAll());
         return "ad/form";
+    }
+
+    @PostMapping("/add")
+    public String saveAd(@Valid final Ad ad, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("companyList", companyService.findAll());
+            model.addAttribute("categoryList", categoryService.findAll());
+            return "ad/form";
+        }
+
+        Company company = companyService.findById(ad.getCompany().getId());
+        Category category = categoryService.findById(ad.getCategory().getId());
+        ad.setCategory(category);
+        ad.setCompany(company);
+        adService.add(ad);
+        return "redirect:list";
     }
 
     @GetMapping("/edit/{id}")
@@ -69,18 +88,5 @@ public class AdController {
         model.addAttribute("companyList", companyService.findAll());
         model.addAttribute("categoryList", categoryService.findAll());
         return "ad/form";
-    }
-
-    @PostMapping("/save")
-    public String saveAd(@ModelAttribute Ad ad,
-                         @RequestParam("companyId") String companyId,
-                         @RequestParam("categoryId") String categoryId) {
-
-        Company company = companyService.findById(companyId);
-        Category category = categoryService.findById(categoryId);
-        ad.setCategory(category);
-        ad.setCompany(company);
-        adService.add(ad);
-        return "redirect:list";
     }
 }

@@ -5,7 +5,10 @@ import com.romantupikov.service.AdService;
 import com.romantupikov.service.CompanyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/company")
@@ -38,13 +41,16 @@ public class CompanyController {
     }
 
     @GetMapping("/add")
-    public String companyForm(Model model) {
-        model.addAttribute("company", new Company());
+    public String companyForm(final Company company) {
         return "company/form";
     }
 
-    @PostMapping("/save")
-    public String addCompany(@ModelAttribute Company company) {
+    @PostMapping("/add")
+    public String addCompany(@Valid final Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "company/form";
+        }
+
         companyService.add(company);
         return "redirect:list";
     }

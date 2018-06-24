@@ -8,15 +8,16 @@
 <section class="container">
 
     <table class="table table-striped">
-        <caption>Ad info</caption>
+        <caption th:text="#{ad.index.caption}">Ad info</caption>
         <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">NAME</th>
-            <th scope="col">CONTENT</th>
-            <th scope="col">PHONE NUMBER</th>
-            <th scope="col">COMPANY</th>
-            <th scope="col">CATEGORY</th>
+            <th th:text="${#strings.toUpperCase('__#{ad.field.name}__')}" scope="col">NAME</th>
+            <th th:text="${#strings.toUpperCase('__#{ad.field.content}__')}"  scope="col">CONTENT</th>
+            <th th:text="${#strings.toUpperCase('__#{ad.field.phoneNumber}__')}"  scope="col">PHONE NUMBER</th>
+            <th th:text="${#strings.toUpperCase('__#{ad.field.company}__')}"  scope="col">COMPANY</th>
+            <th th:text="${#strings.toUpperCase('__#{ad.field.category}__')}"  scope="col">CATEGORY</th>
+            <th th:text="${#strings.toUpperCase('__#{ad.field.publishedDate}__')}"  scope="col">PUBLISHED DATE</th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                    th:text="${ad.company.name}" href="#">company name</a></td>
             <td><a th:href="@{/category/detail/{id}(id=${ad.category.id})}"
                    th:text="${ad.category.name}" href="#">category name</a></td>
+            <td th:text="${ad.publishedDate}">ad published date</td>
         </tr>
         </tbody>
     </table>

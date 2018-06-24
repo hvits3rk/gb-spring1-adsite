@@ -1,14 +1,33 @@
+const locale = {
+    ru: {
+        edit: "Редактировать"
+    },
+    en: {
+        edit: "Edit"
+    }
+};
+
+function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
 function renderAds(adList) {
     const appendBeacon = document.querySelector("#append_beacon");
+    let msgEditLocalized = locale.en.edit;
+    if (getCookie("org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE") === "ru") {
+        msgEditLocalized = locale.ru.edit;
+    }
 
-    for (let { id, name, publishedDate: date, content, phoneNumber, company, category } of adList) {
+    for (let {id, name, publishedDate: date, content, phoneNumber, company, category} of adList) {
         let elem = document.createElement("template");
         let template =
             `<div class="card">
                 <div class="card-body">
                     <div class="clearfix">
                         <h5 class="card-title mb-0 float-left">${name}</h5>
-                        <a href="edit/${id}" class="float-right">Edit</a>
+                        <a href="edit/${id}" class="float-right">${msgEditLocalized}</a>
                     </div>
                     <p class="mb-2 font-weight-light text-muted">${id}</p>
                     <p class="font-weight-light text-muted">${date}</p>
@@ -58,7 +77,7 @@ let pageCounter = 1;
 const fetchRequest = debounce(() => {
     fetch(`${location.protocol}//${location.host}${location.pathname}/pagination?page=${pageCounter}`)
         .then(resp => resp.json())
-        .then(({ adList }) => {
+        .then(({adList}) => {
             if (adList.length !== 0) {
                 renderAds(adList);
                 pageCounter++;

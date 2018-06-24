@@ -10,9 +10,9 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-6">
             <div class="card">
-                <div class="card-header">Create new Category</div>
+                <div th:text="#{category.form.title}" class="card-header">Create new Category</div>
                 <div class="card-body">
-                    <form th:action="@{/category/save}" th:object="${category}" action="#" method="post">
+                    <form th:action="@{/category/add}" th:object="${category}" action="#" method="post">
 
                         <div class="form-group row">
                             <label for="categoryId" class="col-3 col-form-label">Id</label>
@@ -23,14 +23,21 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="categoryName" class="col-3 col-form-label">Name</label>
+                            <label th:text="#{category.field.name}"
+                                   for="categoryName" class="col-3 col-form-label">Name</label>
                             <div class="col">
-                                <input th:field="*{name}" type="text" class="form-control"
-                                       id="categoryName" placeholder="Name" required>
+                                <input th:field="*{name}"
+                                       th:errorclass="is-invalid"
+                                       th:placeholder="#{category.field.name}"
+                                       type="text" class="form-control"
+                                       id="categoryName" placeholder="Name">
+                                <div th:each="err : ${#fields.errors('name')}" th:text="${err}" class="invalid-feedback">
+                                    Error message
+                                </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button th:text="#{button.submit}" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>

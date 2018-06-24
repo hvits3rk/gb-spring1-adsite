@@ -1,11 +1,15 @@
 package com.romantupikov.entity;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Category extends AbstractEntity {
 
+    @Size(max = 255, min = 3, message = "{error.size}")
+    @NotEmpty(message="{error.empty}")
     private String name;
 
     public String getName() {

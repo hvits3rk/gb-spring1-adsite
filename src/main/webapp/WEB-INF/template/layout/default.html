@@ -14,7 +14,9 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a th:href="@{/}" href="#" class="navbar-brand">Ad Site</a>
+        <a th:text="#{header.site.name}"
+           th:href="@{/}"
+           href="#" class="navbar-brand">Ad Site</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,16 +24,39 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li th:classappend="${activeController == 'home' ? 'active' : ''}" class="nav-item">
-                    <a th:href="@{/}" href="#" class="nav-link">Home</a>
+                    <a th:text="#{header.link.home}"
+                       th:href="@{/}"
+                       href="#" class="nav-link">Home</a>
                 </li>
                 <li th:classappend="${activeController == 'ad' ? 'active' : ''}" class="nav-item">
-                    <a th:href="@{/ad/list}" href="#" class="nav-link">Ad</a>
+                    <a th:text="#{header.link.ad}"
+                       th:href="@{/ad/list}"
+                       href="#" class="nav-link">Ad</a>
                 </li>
                 <li th:classappend="${activeController == 'company' ? 'active' : ''}" class="nav-item">
-                    <a th:href="@{/company/list}" href="#" class="nav-link">Company</a>
+                    <a th:text="#{header.link.company}"
+                       th:href="@{/company/list}"
+                       href="#" class="nav-link">Company</a>
                 </li>
                 <li th:classappend="${activeController == 'category' ? 'active' : ''}" class="nav-item">
-                    <a th:href="@{/category/list}" href="#" class="nav-link">Category</a>
+                    <a th:text="#{header.link.category}"
+                       th:href="@{/category/list}"
+                       href="#" class="nav-link">Category</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a th:text="#{lang.change}" class="nav-link dropdown-toggle" href="#"
+                       id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a th:text="#{lang.en}"
+                           th:href="@{${#httpServletRequest.requestURI}(lang='en')}"
+                           href="#" class="dropdown-item">lang 1</a>
+                        <a th:text="#{lang.ru}"
+                           th:href="@{${#httpServletRequest.requestURI}(lang='ru')}"
+                           href="#" class="dropdown-item">lang 2</a>
+                    </div>
                 </li>
             </ul>
         </div>

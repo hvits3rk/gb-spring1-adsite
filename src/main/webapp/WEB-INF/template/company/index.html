@@ -8,13 +8,13 @@
 <section class="container">
 
     <table class="table table-striped mb-5 mt-5">
-        <caption>Company info</caption>
+        <caption th:text="#{company.index.caption}">Company info</caption>
         <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">NAME</th>
-                <th scope="col">DESCRIPTION</th>
-                <th scope="col">ADDRESS</th>
+                <th th:text="${#strings.toUpperCase('__#{company.field.name}__')}" scope="col">NAME</th>
+                <th th:text="${#strings.toUpperCase('__#{company.field.description}__')}" scope="col">DESCRIPTION</th>
+                <th th:text="${#strings.toUpperCase('__#{company.field.address}__')}" scope="col">ADDRESS</th>
             </tr>
         </thead>
         <tbody>

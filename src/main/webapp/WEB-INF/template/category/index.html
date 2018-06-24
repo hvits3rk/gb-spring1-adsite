@@ -8,11 +8,11 @@
 <section class="container">
 
     <table class="table table-striped mb-5 mt-5">
-        <caption>Category info</caption>
+        <caption th:text="#{category.index.caption}">Category info</caption>
         <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">NAME</th>
+                <th th:text="#{category.field.name}" scope="col">NAME</th>
             </tr>
         </thead>
         <tbody>

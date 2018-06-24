@@ -6,21 +6,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 public class Ad extends AbstractEntity {
 
+    @Size(max = 255, min = 3, message = "{error.size}")
+    @NotEmpty(message = "{error.empty}")
     private String name;
+
+    @NotEmpty(message = "{error.empty}")
     private String content;
 
     @Column(name = "phone_number")
+    @NotEmpty(message = "{error.empty}")
     private String phoneNumber;
 
     @Column(name = "published_date")
-    @JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date publishedDate;
 
     @ManyToOne

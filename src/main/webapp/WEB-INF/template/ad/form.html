@@ -9,9 +9,9 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-6">
             <div class="card">
-                <div class="card-header">Create new Ad</div>
+                <div th:text="#{ad.form.title}" class="card-header">Create new Ad</div>
                 <div class="card-body">
-                    <form th:action="@{/ad/save}" th:object="${ad}" action="#" method="post">
+                    <form th:action="@{/ad/add}" th:object="${ad}" action="#" method="post">
 
                         <div class="form-group row">
                             <label for="adId" class="col-3 col-form-label">Id</label>
@@ -22,60 +22,93 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="adName" class="col-3 col-form-label">Name</label>
+                            <label th:text="#{ad.field.name}"
+                                   for="adName" class="col-3 col-form-label">Name</label>
                             <div class="col">
-                                <input th:field="*{name}" type="text" class="form-control"
-                                       id="adName" placeholder="Name" required>
+                                <input th:field="*{name}"
+                                       th:errorclass="is-invalid"
+                                       th:placeholder="#{ad.field.name}"
+                                       type="text" class="form-control"
+                                       id="adName" placeholder="Name">
+                                <div th:each="err : ${#fields.errors('name')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">Error message</div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="adContent" class="col-3 col-form-label">Content</label>
+                            <label th:text="#{ad.field.content}"
+                                   for="adContent" class="col-3 col-form-label">Content</label>
                             <div class="col">
-                                <textarea th:field="*{content}" rows="3" class="form-control"
-                                          id="adContent" placeholder="Content" required></textarea>
+                                <textarea th:field="*{content}"
+                                          th:errorclass="is-invalid"
+                                          th:placeholder="#{ad.field.content}"
+                                          rows="3" class="form-control"
+                                          id="adContent" placeholder="Content"></textarea>
+                                <div th:each="err : ${#fields.errors('content')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">Error message</div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="adPhone" class="col-3 col-form-label">Phone Number</label>
+                            <label th:text="#{ad.field.phoneNumber}"
+                                   for="adPhone" class="col-3 col-form-label">Phone Number</label>
                             <div class="col">
-                                <input th:field="*{phoneNumber}" type="text" class="form-control"
-                                       id="adPhone" placeholder="Phone Number" required>
+                                <input th:field="*{phoneNumber}"
+                                       th:errorclass="is-invalid"
+                                       th:placeholder="#{ad.field.phoneNumber}"
+                                       type="text" class="form-control"
+                                       id="adPhone" placeholder="Phone Number">
+                                <div th:each="err : ${#fields.errors('phoneNumber')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">Error message</div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="adCompany" class="col-3 col-form-label">Company</label>
+                            <label th:text="#{ad.field.company}"
+                                   for="adCompany" class="col-3 col-form-label">Company</label>
                             <div class="col">
-                                <select name="companyId" id="adCompany" class="form-control" required>
+                                <select th:field="*{company.id}" name="companyId" id="adCompany" class="form-control">
                                     <option th:each="company : ${companyList}"
                                             th:value="${company.id}"
-                                            th:selected="${ad.company?.id} == ${company.id}"
+                                            th:selected="*{company?.id} == ${company.id}"
                                             th:text="${company.name}">Company</option>
                                 </select>
+                                <div th:each="err : ${#fields.errors('company')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">Error message</div>
                             </div>
                             <div class="col-3">
-                                <a th:href="@{/company/add}" href="#" class="btn btn-outline-primary">Add new</a>
+                                <a th:text="#{link.create}"
+                                   th:href="@{/company/add}"
+                                   href="#" class="btn btn-outline-primary">Add new</a>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="adCategory" class="col-3 col-form-label">Category</label>
+                            <label th:text="#{ad.field.category}"
+                                   for="adCategory" class="col-3 col-form-label">Category</label>
                             <div class="col">
-                                <select name="categoryId" id="adCategory" class="form-control" required>
+                                <select th:field="*{category.id}" name="categoryId" id="adCategory" class="form-control">
                                     <option th:each="category : ${categoryList}"
                                             th:value="${category.id}"
-                                            th:selected="${ad.category?.id} == ${category.id}"
+                                            th:selected="*{category?.id} == ${category.id}"
                                             th:text="${category.name}">Category</option>
                                 </select>
+                                <div th:each="err : ${#fields.errors('category')}"
+                                     th:text="${err}"
+                                     class="invalid-feedback">Error message</div>
                             </div>
                             <div class="col-3">
-                                <a th:href="@{/category/add}" href="#" class="btn btn-outline-primary">Add new</a>
+                                <a th:text="#{link.create}"
+                                   th:href="@{/category/add}"
+                                   href="#" class="btn btn-outline-primary">Add new</a>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button th:text="#{button.submit}" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
