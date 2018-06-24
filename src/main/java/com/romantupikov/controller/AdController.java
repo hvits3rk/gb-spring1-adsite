@@ -1,16 +1,12 @@
 package com.romantupikov.controller;
 
-import com.romantupikov.ajax.AdAjax;
 import com.romantupikov.entity.Ad;
 import com.romantupikov.entity.Category;
 import com.romantupikov.entity.Company;
+import com.romantupikov.pagination.AdPaginationModel;
 import com.romantupikov.service.AdService;
 import com.romantupikov.service.CategoryService;
 import com.romantupikov.service.CompanyService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,28 +30,22 @@ public class AdController {
         return "ad";
     }
 
-    @GetMapping(value = "/list/ajax", produces = "application/json")
+    @GetMapping(value = "/list/pagination", produces = "application/json")
     @ResponseBody
-    public AdAjax listAdAjax(@RequestParam(value = "page", defaultValue = "0") Integer page,
-                             @RequestParam(value = "items", defaultValue = "8") Integer items,
-                             @RequestParam(value = "order", defaultValue = "DESC") String order,
-                             @RequestParam(value = "orderBy", defaultValue = "publishedDate") String orderBy) {
-        Sort sort = new Sort(Sort.Direction.DESC, orderBy);
-        if (order.equals("ASC")) {
-            sort.ascending();
-        }
+    public AdPaginationModel listPagination(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "items", defaultValue = "8") Integer items,
+            @RequestParam(value = "order", defaultValue = "DESC") String order,
+            @RequestParam(value = "orderBy", defaultValue = "publishedDate") String orderBy) {
 
-        PageRequest pageRequest = PageRequest.of(page, items, sort);
-        Page<Ad> adPage = adService.findPaginated(pageRequest);
-
-        AdAjax adAjax = new AdAjax();
-        adAjax.setAdList(adPage.getContent());
-
-        return adAjax;
+        return adService.getAdPage(page, items, order, orderBy);
     }
 
     @GetMapping("/list")
-    public String adList() {
+    public String adList(Model model) {
+        // pre-render first page
+        model.addAttribute("adList",
+                adService.getAdPage(0, 8, "DESC", "publishedDate").getAdList());
         return "ad/list";
     }
 
@@ -91,6 +81,6 @@ public class AdController {
         ad.setCategory(category);
         ad.setCompany(company);
         adService.add(ad);
-        return "redirect:/";
+        return "redirect:list";
     }
 }

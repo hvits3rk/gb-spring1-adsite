@@ -22,3 +22,8 @@ body > .container {
     padding-right: 15px;
     padding-left: 15px;
 }
+
+.card {
+    width: 34rem;
+    margin: 12px;
+}

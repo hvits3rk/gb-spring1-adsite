@@ -1,10 +1,10 @@
-package com.romantupikov.ajax;
+package com.romantupikov.pagination;
 
 import com.romantupikov.entity.Ad;
 
 import java.util.List;
 
-public class AdAjax {
+public class AdPaginationModel {
     private List<Ad> adList;
 
     public List<Ad> getAdList() {

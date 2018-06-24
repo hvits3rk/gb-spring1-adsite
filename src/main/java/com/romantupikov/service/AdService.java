@@ -1,9 +1,12 @@
 package com.romantupikov.service;
 
+import com.romantupikov.pagination.AdPaginationModel;
 import com.romantupikov.entity.Ad;
 import com.romantupikov.repository.AdRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -37,6 +40,21 @@ public class AdService {
 
     public Page<Ad> findPaginated(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    public AdPaginationModel getAdPage(Integer page, Integer items, String order, String orderBy) {
+        Sort sort = new Sort(Sort.Direction.DESC, orderBy);
+        if (order.equals("ASC")) {
+            sort.ascending();
+        }
+
+        PageRequest pageRequest = PageRequest.of(page, items, sort);
+        Page<Ad> adPage = findPaginated(pageRequest);
+
+        AdPaginationModel adPaginationModel = new AdPaginationModel();
+        adPaginationModel.setAdList(adPage.getContent());
+
+        return adPaginationModel;
     }
 
     public Ad add(Ad ad) {
