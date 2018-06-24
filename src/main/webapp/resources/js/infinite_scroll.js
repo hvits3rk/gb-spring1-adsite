@@ -14,8 +14,8 @@ function renderAds(adList) {
                     <p class="font-weight-light text-muted">${date}</p>
                     <p class="card-text">${content}</p>
                     <p class="text-muted">${phoneNumber}</p>
-                    <a href="/company/${company.id}" class="card-link">#${company.name}</a>
-                    <a href="/category/${category.id}" class="card-link">#${category.name}</a>
+                    <a href="/company/detail/${company.id}" class="card-link">#${company.name}</a>
+                    <a href="/category/detail/${category.id}" class="card-link">#${category.name}</a>
                 </div>
             </div>`;
         template = template.trim();
