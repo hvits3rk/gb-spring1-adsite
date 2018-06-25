@@ -1,5 +1,6 @@
 package com.romantupikov.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -12,9 +13,11 @@ public class Company extends AbstractEntity {
     @NotEmpty(message="{error.empty}")
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     @NotEmpty(message="{error.empty}")
     private String description;
 
+    @Size(max = 255, min = 3, message = "{error.size}")
     @NotEmpty(message="{error.empty}")
     private String address;
 

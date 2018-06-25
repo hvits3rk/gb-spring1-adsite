@@ -19,7 +19,7 @@
     <tr th:each="ad : ${adList}">
         <td th:text="${ad.id}" scope="row">ad id</td>
         <td th:text="${ad.name}">ad name</td>
-        <td th:text="${ad.content}">ad content</td>
+        <td><p th:text="${ad.content}" class="text-truncate"></p>ad content</td>
         <td th:text="${ad.phoneNumber}">ad phone number</td>
         <td><a th:href="@{/company/detail/{id}(id=${ad.company.id})}"
                th:text="${ad.company.name}" href="#">company name</a></td>
@@ -32,21 +32,19 @@
 
 <div th:fragment="card" th:each="ad : ${adList}" class="card">
     <div class="card-body">
-        <div class="clearfix">
-            <h5 th:text="${ad.name}" class="card-title mb-0 float-left">Card title</h5>
-            <a th:text="#{link.edit}"
-               th:href="@{edit/{id}(id=${ad.id})}"
-               href="#" class="float-right">Edit</a>
-        </div>
+        <a th:href="@{detail/{id}(id=${ad.id})}" href="#">
+            <h4 th:text="${ad.name}" class="card-title mb-0">Card title</h4>
+        </a>
         <p th:text="${ad.id}" class="mb-2 font-weight-light text-muted">id</p>
-        <p th:text="${{ad.publishedDate}}" class="font-weight-light text-muted">Date</p>
-        <p th:text="${ad.content}" class="card-text">Some quick example text to build on the card title and make
+        <p th:text="${{ad.publishedDate}}" class="font-weight-light text-muted mb-0">Date</p>
+        <hr class="mt-0">
+        <p th:text="${ad.content}" class="card-text text-truncate">Some quick example text to build on the card title and make
             up the bulk of the card's content.</p>
         <p th:text="${ad.phoneNumber}" class="text-muted">phone number</p>
         <a th:href="@{/company/detail/{id}(id=${ad.company.id})}"
-           th:text="'#' + ${ad.company.name}" href="#" class="card-link">Company link</a>
+           th:text="'#' + ${ad.company.name}" href="#" class="card-link text-info">Company link</a>
         <a th:href="@{/category/detail/{id}(id=${ad.category.id})}"
-           th:text="'#' + ${ad.category.name}" href="#" class="card-link">Category link</a>
+           th:text="'#' + ${ad.category.name}" href="#" class="card-link text-info">Category link</a>
     </div>
 </div>
 

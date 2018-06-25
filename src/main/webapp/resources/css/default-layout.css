@@ -23,7 +23,7 @@ body > .container {
     padding-left: 15px;
 }
 
-.card {
+#append_beacon .card {
     width: 34rem;
     margin: 12px;
 }

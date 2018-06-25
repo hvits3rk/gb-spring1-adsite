@@ -7,33 +7,24 @@
 
 <section class="container">
 
-    <table class="table table-striped">
-        <caption th:text="#{ad.index.caption}">Ad info</caption>
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th th:text="${#strings.toUpperCase('__#{ad.field.name}__')}" scope="col">NAME</th>
-            <th th:text="${#strings.toUpperCase('__#{ad.field.content}__')}"  scope="col">CONTENT</th>
-            <th th:text="${#strings.toUpperCase('__#{ad.field.phoneNumber}__')}"  scope="col">PHONE NUMBER</th>
-            <th th:text="${#strings.toUpperCase('__#{ad.field.company}__')}"  scope="col">COMPANY</th>
-            <th th:text="${#strings.toUpperCase('__#{ad.field.category}__')}"  scope="col">CATEGORY</th>
-            <th th:text="${#strings.toUpperCase('__#{ad.field.publishedDate}__')}"  scope="col">PUBLISHED DATE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${ad.id}" scope="row">ad id</td>
-            <td th:text="${ad.name}">ad name</td>
-            <td th:text="${ad.content}">ad content</td>
-            <td th:text="${ad.phoneNumber}">ad phone number</td>
-            <td><a th:href="@{/company/detail/{id}(id=${ad.company.id})}"
-                   th:text="${ad.company.name}" href="#">company name</a></td>
-            <td><a th:href="@{/category/detail/{id}(id=${ad.category.id})}"
-                   th:text="${ad.category.name}" href="#">category name</a></td>
-            <td th:text="${ad.publishedDate}">ad published date</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="card mt-5">
+        <div class="card-body">
+            <div class="clearfix mb-0 ">
+                <h4 th:text="${ad.name}" class="card-title float-left">Card title</h4>
+                <a th:text="#{link.edit}" th:href="@{/ad/edit/{id}(id=${ad.id})}" href="#" class="float-right">Edit</a>
+            </div>
+            <p th:text="${ad.id}" class="mb-2 font-weight-light text-muted">id</p>
+            <p th:text="${{ad.publishedDate}}" class="font-weight-light text-muted mb-0">Date</p>
+            <hr class="mt-0">
+            <p th:text="${ad.content}" class="card-text">Some quick example text to build on the card title and make
+                up the bulk of the card's content.</p>
+            <p th:text="${ad.phoneNumber}" class="text-muted">phone number</p>
+            <a th:href="@{/company/detail/{id}(id=${ad.company.id})}"
+               th:text="'#' + ${ad.company.name}" href="#" class="card-link text-info">Company link</a>
+            <a th:href="@{/category/detail/{id}(id=${ad.category.id})}"
+               th:text="'#' + ${ad.category.name}" href="#" class="card-link text-info">Category link</a>
+        </div>
+    </div>
 
 </section>
 

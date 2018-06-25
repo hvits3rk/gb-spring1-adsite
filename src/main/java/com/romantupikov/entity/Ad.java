@@ -18,10 +18,12 @@ public class Ad extends AbstractEntity {
     @NotEmpty(message = "{error.empty}")
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "{error.empty}")
     private String content;
 
     @Column(name = "phone_number")
+    @Size(max = 255, min = 3, message = "{error.size}")
     @NotEmpty(message = "{error.empty}")
     private String phoneNumber;
 
