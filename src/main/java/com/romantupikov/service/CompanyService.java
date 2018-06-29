@@ -4,11 +4,13 @@ import com.romantupikov.entity.Ad;
 import com.romantupikov.entity.Company;
 import com.romantupikov.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional("webTransactionManager")
 public class CompanyService {
 
     private final CompanyRepository repository;

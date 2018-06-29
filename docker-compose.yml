@@ -14,6 +14,13 @@ services:
     environment:
       POSTGRES_PASSWORD: pass
 
+  db_auth:
+    image: postgres
+    volumes:
+      - pslq-auth:/var/lib/postgresql/auth
+    environment:
+      POSTGRES_PASSWORD: pass
+
   adminer:
     image: adminer
     ports:
@@ -33,3 +40,4 @@ services:
 
 volumes:
   pslq-data:
+  pslq-auth:

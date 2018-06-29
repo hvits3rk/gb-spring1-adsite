@@ -2,11 +2,13 @@ package com.romantupikov.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
+@Table(name = "company")
 public class Company extends AbstractEntity {
 
     @Size(max = 255, min = 3, message = "{error.size}")

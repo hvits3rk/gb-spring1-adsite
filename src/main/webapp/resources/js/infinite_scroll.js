@@ -61,7 +61,8 @@ function debounce(callback, wait, context = this) {
 let pageCounter = 1;
 
 const fetchRequest = debounce(() => {
-    fetch(`${location.protocol}//${location.host}${location.pathname}/pagination?page=${pageCounter}`)
+    fetch(`${location.protocol}//${location.host}${location.pathname}/pagination?page=${pageCounter}`,
+        { mode: "cors" })
         .then(resp => resp.json())
         .then(({adList}) => {
             if (adList.length !== 0) {
